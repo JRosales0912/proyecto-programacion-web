@@ -1,18 +1,26 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import logo from './images/general/circle.jpg';
 import './App.css';
+import {PivotBasic} from './privotBar'
 
 class App extends Component {
   render() {
+
+    const styles = {
+      backgroundImage: "url("+logo+")",
+      backgroundSize: "100% ",
+      backgroundPosition: "bottom right"
+    }
+
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
+        <header className="App-header" style={styles}>
+        <h1 className="App-title">catalogo de relojes</h1>
         </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+        <PivotBasic/>
+        <footer>
+          footer needs atention
+        </footer>
       </div>
     );
   }
