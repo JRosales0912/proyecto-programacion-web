@@ -6,22 +6,24 @@ import {
 } from 'office-ui-fabric-react/lib/FocusZone';
 import './List.Ghosting.Example.scss';
 import { Button, Grid, Row, Col, Thumbnail } from 'react-bootstrap';
+import { DefaultButton } from 'office-ui-fabric-react/lib/Button';
 
 export class ListGhostingExample extends React.Component{
 
   render() {
     const { items } = this.props;
     return (
-      <Grid>
+      <Grid>        
+        <br/>
         <Row>
           <Col xs={6} md={4}>
             <Thumbnail src={logo} alt="242x200">
               <h3>Thumbnail label</h3>
               <p>Description</p>
               <p>
-                <Button bsStyle="primary">Button</Button>
+                <DefaultButton primary={true}>Modificar</DefaultButton>
                 &nbsp;
-                <Button bsStyle="default">Button</Button>
+                <DefaultButton>Eliminar</DefaultButton>
               </p>
             </Thumbnail>
           </Col>
@@ -30,10 +32,10 @@ export class ListGhostingExample extends React.Component{
               <h3>Thumbnail label</h3>
               <p>Description</p>
               <p>
-                <Button bsStyle="primary">Button</Button>
+                <DefaultButton primary={true}>Modificar</DefaultButton>
                 &nbsp;
-                <Button bsStyle="default">Button</Button>
-              </p>
+                <DefaultButton>Eliminar</DefaultButton>
+                </p>
             </Thumbnail>
           </Col>
           <Col xs={6} md={4}>
@@ -41,9 +43,9 @@ export class ListGhostingExample extends React.Component{
               <h3>Thumbnail label</h3>
               <p>Description</p>
               <p>
-                <Button bsStyle="primary">Button</Button>
+                <DefaultButton primary={true}>Modificar</DefaultButton>
                 &nbsp;
-                <Button bsStyle="default">Button</Button>
+                <DefaultButton>Eliminar</DefaultButton>
               </p>
             </Thumbnail>
           </Col>

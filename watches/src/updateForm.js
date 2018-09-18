@@ -15,8 +15,10 @@ export class UpdateForm extends React.Component{
     //<MaskedTextField label="With input mask" mask="m\ask: (999) 999 - 9999" />
     return (
         <div className="docs-TextFieldExample" style={style}>
+        <br/>
+        <Col sm={6}> 
         
-        <Col sm={6}>        
+        <br/>       
         <Thumbnail src={logo} alt="242x200">
         <TextField label="Marca" underlined required={true} />        
         <TextField label="Modelo" underlined required={true} />

@@ -3,6 +3,7 @@ import { Label } from 'office-ui-fabric-react/lib/Label';
 import { Pivot, PivotItem } from 'office-ui-fabric-react/lib/Pivot';
 import {ListGhostingExample} from "./watchList.js"
 import {UpdateForm} from "./updateForm.js"
+import {WatchHistory} from "./historia.js"
 
 
 export class PivotBasic extends React.Component{
@@ -20,8 +21,9 @@ export class PivotBasic extends React.Component{
 
     return (
       <div>
-        <Pivot>
-          <PivotItem
+        <Pivot >
+          <PivotItem 
+          className="ms-font-su"
             headerText="Inicio"
             linkText="I am deprecated. &quot;headerText&quot; overwrites me"
             headerButtonProps={{
@@ -29,12 +31,16 @@ export class PivotBasic extends React.Component{
               'data-title': 'My Files Title'
             }}
           >
-          <Label>Historia del Reloj</Label>                     
+          <br/>
+          <Label>Historia del Reloj</Label>
+          <WatchHistory/> 
+                  
           </PivotItem>
           <PivotItem linkText="Catalogo">  
             <ListGhostingExample items={dict}/>
           </PivotItem>
           <PivotItem linkText="Agregar al Catalogo">
+            <br/>
             <UpdateForm/>
           </PivotItem>
         </Pivot>

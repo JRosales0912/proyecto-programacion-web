@@ -1,0 +1,27 @@
+import * as React from 'react';
+
+
+export class WatchHistory extends React.Component{
+  render(){
+    return (
+        <div class="post-content">
+        
+        <p align="JUSTIFY">Ya nuestros antepasados trataban de definir las estaciones del año y predecir el tiempo explorando el firmamento. A medida que la civilización fue desarrollándose, la medida del tiempo fue tomando cada vez más relevancia. Así se desarrollaron técnicas, cada vez más complicadas para conseguir una medida precisa del tiempo. La relojes eran, sin embargo, propiedad privada y reservados durante mucho tiempo a la más alta sociedad de manera exclusiva, dado el alto coste de la fabricación de dichos instrumentos de medida. No es hasta la llegada de la industrialización cuando los relojes se sitúan al alcance de la población en general. Pero comencemos por el principio:</p>
+        <p align="JUSTIFY">&nbsp;l reloj de pulsera es una adaptación y por tanto, un invento posterior al reloj de bolsillo. El paso al reloj de pulsera no fue algo que ocurrió de la noche a la mañana, sino que más bien fue el resultado de una cuestión de practicidad. La historia del reloj de pulsera se remonta a principios del siglo XXV. Por aquel entonces, los relojes móviles eran fabricados por un tal Peter Henlein – si bien en forma de relojes de bolsillo. Estos relojes fueron posibles gracias al descubrimiento del muelle de tracción, el cual permitió sustituir el péndulo por la transmisión y el volante ( por aquella época aún de doble péndulo) como elemento para marcar el ritmo. Gracias a este invento, se consiguió reducir el tamaño de los relojes. Abraham Louis Breguet fue quien, en el año 1812 construyó el primer reloj de pulsera para Caroline, reina de Nápoles y hermana menor de Napoleon. En general, sin embargo, los relojes de bolsillo seguían predominando. No es hasta comienzos del siglo XX cuando el reloj de pulsera comienza a dominar.</p>
+        <p align="JUSTIFY">&nbsp;Por esta época, las damas comenzaron a poner de moda, unos pequeños relojes de bolsillo llevados en la muñeca. Esta moda por el momento se limita a las mujeres, ya que los hombres siguen llevando sus relojes de bolsillo colgando de una fina cadena al estilo tradicional, lo que según la ocasión, resultaba realmente poco práctico. Un ejemplo de esto son los pilotos, quienes, por aquella época, y dado lo reducido de sus instrumentos de abordo, verdaderamente necesitaban el reloj para realizar mediciones rápidas y de gran relevancia. El pionero de la aviación brasileño Alberto Santos-Dumont pidió a su amigo y relojero parisino Louis Cartier que le fabricara un reloj que pudiera llevar muñeca. Cartier Santos es por tanto uno de los primeros modelos de reloj de pulsera que existieron para caballero.</p>
+        <p align="JUSTIFY">A lo largo de la primera guerra mundial el reloj de pulsera se impuso entre los militares y finalmente también en la sociedad civil llegándose a convertir en un estándar una vez finalizada la guerra.</p>
+        
+        <p align="JUSTIFY">&nbsp;El primer reloj automatico (en forma de reloj de pulsera con péndulo de inercia) fue inventado en 1923 por John Harwood. Más adelante, Rolex construyó un reloj automático con un rotor de cuerda unilateral y lo patentó. En este principio se basan los mecanismos que hoy en día encontramos en los relojes automáticos comunes.</p>
+        <p align="JUSTIFY">&nbsp;Los años 50 y 60 fueron los años de oro del reloj de pulsera mecánico. El automatismo se sigue desarrollando, el diseño se hace más fantástico y detallado. El reloj automático alcanza su punto álgido en aquellas fechas.</p>
+        <p align="JUSTIFY">&nbsp;No es hasta el año 1967 cuando el Centre Electronique Horloger en Suiza presenta el primer reloj de pulsera electrónico con una pieza diminuta de cuarzo como elemento regulador. En los años posterirores fue alcanzando cada vez más fama y ganándole terreno a la relojería mecánica. </p>
+        
+        <p align="JUSTIFY">El (primer) ocaso del reloj de pulsera mecánico se vislumbró durante la feria de relojería en Basilea en el año 1970: Distintas casas suizas de relojería presentan sus creaciones de cuarzo. Esta técnica, sin embargo, fue adoptada por las firmas japonesas (Citizen, Seiko y Casio) para introducirla en sus producciones en serie. El reloj mecánico tradicional, perdería cualquier batalla frente al nuevo reloj de cuarzo, en lo que a precisión y coste se refería. El peso de la industria relojera se traslada con ello al Asia oriental. La industria relojera suiza recibe un fuerte golpe que la debasta y la deja prácticamente fuera de combate. La industria relojera americana, desaparece por completo.</p>
+        
+        <p align="JUSTIFY">En el año 1970 Peter Petroff desarrolla el primer prototipo de reloj de pulsera digital con indicador de LED. Éste es perfeccionado por la casa Hamilton Watch Company y Electro-Data. El indicador digital por aquel entonces tan sólo podía consultarse durante un par de segundos tras pulsar un botón, dado el alto consumo de energía que suponía.</p>
+        <p align="JUSTIFY">&nbsp;Los primeros relojes de pulsera digitales con esfera de LCD salieron al mercado entre 1973 y 1975. La compañía Gruen y Timex en E.E.U.U., Nepro y Mondaine en Suiza y Seiko y Casio en Japón fueron los pioneros.</p>
+               
+            </div>
+                   
+    );
+  }
+}
