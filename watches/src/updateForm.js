@@ -22,7 +22,6 @@ export class UpdateForm extends React.Component{
   saveObject(e){    
     this.state.id = this.state.id + 1;
     localStorage.setItem(this.state.id.toString(),JSON.stringify(this.state));
-    console.log(localStorage.getItem(this.state.id.toString()))
   }
 
   saveChange(event){

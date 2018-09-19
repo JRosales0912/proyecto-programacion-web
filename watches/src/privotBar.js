@@ -10,20 +10,33 @@ export class PivotBasic extends React.Component{
   render(){
     
     var dict = []; // create an empty array
+    localStorage.setItem("99",JSON.stringify({Marca:"Rolex",
+                                              Modelo:"Aquamaster",
+                                              Tipo:"Casual",
+                                              Año:"2019",
+                                              Diametro:"42 mm"}));                                  
+    localStorage.setItem("89",JSON.stringify({Marca:"Omega",
+    Modelo:"Aquaracer",
+    Tipo:"Formal",
+    Año:"2015",
+    Diametro:"46 mm"}));
+    
+    localStorage.setItem("909",JSON.stringify({Marca:"Bulova",
+                                              Modelo:"CURV",
+                                              Tipo:"Casual",
+                                              Año:"2017",
+                                              Diametro:"38 mm"}));
 
-    dict.push( {name:"myfirstWatch", index:5});
-    
-    dict.push( {name:"seiko", index:8});
-    
-    dict.push( {name:"ffff", index:3});
-    
-    dict.push( {name:"d", index:11});
+    Object.keys(localStorage).forEach(function(key){
+      const item =localStorage.getItem(key);
+      console.log(item);
+      dict.push(item);
+    });
 
     return (
       <div>
         <Pivot >
           <PivotItem 
-          className="ms-font-su"
             headerText="Inicio"
             linkText="I am deprecated. &quot;headerText&quot; overwrites me"
             headerButtonProps={{
