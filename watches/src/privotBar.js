@@ -27,12 +27,6 @@ export class PivotBasic extends React.Component{
                                               Año:"2017",
                                               Diametro:"38 mm"}));
 
-    Object.keys(localStorage).forEach(function(key){
-      const item =localStorage.getItem(key);
-      console.log(item);
-      dict.push(item);
-    });
-
     return (
       <div>
         <Pivot >
@@ -50,7 +44,7 @@ export class PivotBasic extends React.Component{
                   
           </PivotItem>
           <PivotItem linkText="Catalogo">  
-            <ListGhostingExample items={dict}/>
+            <ListGhostingExample/>
           </PivotItem>
           <PivotItem linkText="Agregar al Catalogo">
             <br/>
