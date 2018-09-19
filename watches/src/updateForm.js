@@ -7,30 +7,57 @@ import './List.Ghosting.Example.scss';
 import logo from './images/watches/tag heuer-carrera2.jpg';
 
 export class UpdateForm extends React.Component{
+  constructor(props){
+    super(props);
+    this.state = {Marca:"",
+                  Modelo:"",
+                  Tipo:"",
+                  Año:"",
+                  Diametro:"",
+                  id: 0,};
+    this.saveObject = this.saveObject.bind(this);
+    this.saveChange = this.saveChange.bind(this);
+  }
+  
+  saveObject(e){    
+    this.state.id = this.state.id + 1;
+    localStorage.setItem(this.state.id.toString(),JSON.stringify(this.state));
+    console.log(localStorage.getItem(this.state.id.toString()))
+  }
+
+  saveChange(event){
+    const target = event.target;
+    const name = target.id;
+    const value = target.value;
+
+    this.setState({
+      [name]: value
+    });
+  }
   render(){
     const style = {
         display: 'flex',
         justifyContent: 'center'
-    }  
+    } 
+    
     //<MaskedTextField label="With input mask" mask="m\ask: (999) 999 - 9999" />
     return (
         <div className="docs-TextFieldExample" style={style}>
-        <br/>
-        <Col sm={6}> 
-        
+        <Col sm={6}>         
         <br/>       
         <Thumbnail src={logo} alt="242x200">
-        <TextField label="Marca" underlined required={true} />        
-        <TextField label="Modelo" underlined required={true} />
-        <TextField label="Año" underlined required={true} />        
-        <TextField label="Tipo" underlined required={true} />
-        <MaskedTextField label="Diametro"  underlined mask="99 mm" />
+        <TextField id="Marca" label="Marca" underlined onChange={this.saveChange} required={true} />        
+        <TextField id="Modelo" label="Modelo" underlined onChange={this.saveChange} required={true} />
+        <TextField id="Año" label="Año" underlined onChange={this.saveChange} required={true} />        
+        <TextField id="Tipo" label="Tipo" underlined onChange={this.saveChange} required={true} />
+        <MaskedTextField id="Diametro" label="Diametro" onChange={this.saveChange} underlined mask="99 mm" />
         <br/>
         <DefaultButton
             primary={true}
             text="Agregar"
             allowDisabledFocus={true}
-          />
+            onClick={this.saveObject}
+        />
         </Thumbnail>
         </Col>
       </div>
