@@ -16,7 +16,7 @@ class App extends Component {
     return (
       <div className="App">
         <header className="App-header" style={styles}>
-        <h1 className="ms-font-su">Catalogo de relojes</h1>
+        <h1 className="ms-font-su">Catalogo de relojes Test</h1>
         </header>
         <PivotBasic/>
         <footer>
