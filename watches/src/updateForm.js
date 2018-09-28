@@ -55,8 +55,6 @@ export class UpdateForm extends React.Component{
         }
       }
     };
-    
-    //<MaskedTextField label="With input mask" mask="m\ask: (999) 999 - 9999" />
     return (
         <div className="docs-TextFieldExample" style={style}>
         <Col sm={6}>         

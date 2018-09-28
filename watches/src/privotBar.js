@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Label } from 'office-ui-fabric-react/lib/Label';
-import { Pivot, PivotItem, PivotLinkSize, IPivotItemProps } from 'office-ui-fabric-react/lib/Pivot';
+import { Pivot, PivotItem, PivotLinkSize } from 'office-ui-fabric-react/lib/Pivot';
 import { initializeIcons } from '@uifabric/icons';
 import {WatchList} from "./watchList.js"
 import {UpdateForm} from "./updateForm.js"
