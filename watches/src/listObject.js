@@ -4,52 +4,86 @@ import './List.Ghosting.Example.scss';
 import { Col, Thumbnail } from 'react-bootstrap';
 import { DefaultButton } from 'office-ui-fabric-react/lib/Button';
 import { TextField, MaskedTextField } from 'office-ui-fabric-react/lib/TextField';
+import { Label } from 'office-ui-fabric-react';
 
 export class ListObject extends React.Component{
   constructor(props){
     super(props);
-    this.handleDeleteClick = this.handleDeleteClick.bind(this)
-    this.handleModifyClick = this.handleModifyClick.bind(this)
+    this.handleDeleteClick = this.handleDeleteClick.bind(this);
+    this.handleModifyClick = this.handleModifyClick.bind(this);
+    this.saveChange = this.saveChange.bind(this);
     console.log("constructor");
     this.state = { visible: true,
-                    modify: false};
+                    modify: false,
+                    Marca:"",
+                    Modelo:"",
+                    Tipo:"",
+                    Año:"",
+                    Diametro:"",
+                    id: 0,};
+  } 
+  saveObject(e){
+    const watch = {Marca:this.state.Marca,
+                    Modelo:this.state.Modelo,
+                    Tipo:this.state.Tipo,
+                    Año:this.state.Año,
+                    Diametro:this.state.Diametro,
+                    id: this.state.id,};    
+    localStorage.setItem(this.state.id.toString(),JSON.stringify(watch));
   }
+
+  saveChange(event){
+    try{
+        
+    const target = event.target;
+    const name = target.id;
+    const value = target.value;
+
+    this.setState({
+      [name]: value
+    });
+    }
+    catch(e)
+    {
+
+    }
+
+  }
+
   handleDeleteClick(e) {
     const key = this.props.itemKey;
     localStorage.removeItem(key);
     this.setState({visible:false})
   }
-  sleep (time) {
-    return new Promise((resolve) => setTimeout(resolve, time));
-  }
 
   handleModifyClick(e){  
-    console.log(" ----------------Begin-----------------------"); 
     const button = e.target;
-    console.log(this.state.modify + " before if");
       if(this.state.modify)
       {
         this.setState(({modify: false}), () => {
-        console.log(this.state.modify + " inner false");
-        console.log(this.state);
         this.forceUpdate();
+        this.saveChange();
         button.innerHTML = "Modificar";})
       }
       else
       {
         this.setState(({modify: true}), () => {
-        console.log(this.state.modify+ " inner true"); 
-        console.log(this.state); 
         this.forceUpdate();
         button.innerHTML = "Guardar";})
-      }
-      console.log(this.state);
-      console.log(" ----------------End-----------------------"); 
+      } 
   }
-  render() {
+  componentWillMount() {
     this.item = JSON.parse(this.props.itemList);
     this.key = this.props.itemKey;
-    console.log("rendering");
+    this.setState({Marca:this.item.Marca,
+                  Modelo:this.item.Modelo,
+                  Tipo:this.item.Tipo,
+                  Año:this.item.Año,
+                  Diametro:this.item.Diametro,
+                  id: this.item.id});
+    console.log(this.state);
+  }
+  render() {
     const style = {
       display: this.state.visible ? "initial": "none"
     }
@@ -64,12 +98,17 @@ export class ListObject extends React.Component{
     return (
         <Col xs={6} md={4} id={this.key} style={style}>
             <Thumbnail src={logo} alt="242x200">
-            <TextField  label="Marca" underlined  readOnly={this.state.modify} value={this.item.Marca} borderless={this.state.modify} styles={textFieldStyle}/>
-            <TextField  label="Modelo" underlined readOnly={this.state.modify} value={this.item.Modelo} borderless={this.state.modify} styles={textFieldStyle}/>          
-            <TextField  label="Año" underlined readOnly={this.state.modify} value={this.item.Año} borderless={this.state.modify} styles={textFieldStyle}/>
-            <TextField  label="Tipo" underlined readOnly={this.state.modify} value={this.item.Tipo} borderless={this.state.modify} styles={textFieldStyle}/>
-            <MaskedTextField label="Diametro" underlined readOnly={this.state.modify} value={this.item.Diametro} borderless={this.state.modify} styles={textFieldStyle} mask="99 mm"/>
-            <span visible="false">{this.key}</span>
+            {this.state.modify && <TextField  id="Marca" label="Marca" underlined value={this.state.Marca} onChange={this.saveChange} styles={textFieldStyle}/>}
+            {!this.state.modify && <Label>Marca {this.state.Marca}</Label>}
+            {this.state.modify && <TextField  id="Modelo" label="Modelo" underlined value={this.state.Modelo} onChange={this.saveChange} styles={textFieldStyle}/> }        
+            {!this.state.modify && <Label>Modelo {this.state.Modelo}</Label>}
+            {this.state.modify && <TextField  id="Año" label="Año" underlined value={this.state.Año} onChange={this.saveChange} styles={textFieldStyle}/>}
+            {!this.state.modify && <Label>Año {this.state.Año}</Label>}
+            {this.state.modify && <TextField id="Tipo" label="Tipo" underlined value={this.state.Tipo} onChange={this.saveChange} styles={textFieldStyle}/>}
+            {!this.state.modify && <Label>Tipo {this.state.Tipo}</Label>}
+            {this.state.modify && <MaskedTextField id="Diametro" label="Diametro" underlined value={this.state.Diametro} onChange={this.saveChange} styles={textFieldStyle} mask="99 mm"/>}
+            {!this.state.modify && <Label>Diametro {this.state.Diametro}</Label>}
+            <br/>
             <p>
                 <DefaultButton primary={true} onClick={this.handleModifyClick} checked={this.state.modify}>Modificar</DefaultButton>
                 &nbsp;
