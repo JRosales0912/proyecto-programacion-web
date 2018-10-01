@@ -1,31 +1,20 @@
 import * as React from 'react';
-import logo from './images/watches/tag heuer-carrera2.jpg';
-import {
-  FocusZone,
-  FocusZoneDirection
-} from 'office-ui-fabric-react/lib/FocusZone';
 import './List.Ghosting.Example.scss';
-import { Button, Grid, Row, Col, Thumbnail } from 'react-bootstrap';
-import { DefaultButton } from 'office-ui-fabric-react/lib/Button';
+import {Grid, Row} from 'react-bootstrap';
 import { ListObject } from './listObject';
 
-export class ListGhostingExample extends React.Component{
-
-  
-  render() {
-    const { items } = this.props;
-    
+export const WatchList = (props) => 
+{
     return (
-      <Grid>        
+      <Grid align="center">        
         <br/>
         <Row>
           {
             Object.keys(localStorage).map((itemList, i)=>(
-              <ListObject itemList={localStorage.getItem(itemList)}/>
+              <ListObject itemList={localStorage.getItem(itemList)} itemKey={itemList}/>
             ))
           }
         </Row>
       </Grid>
     );
-  }
 }
