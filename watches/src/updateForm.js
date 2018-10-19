@@ -1,9 +1,11 @@
 import * as React from 'react';
 import { TextField, MaskedTextField } from 'office-ui-fabric-react/lib/TextField';
-import { DefaultButton } from 'office-ui-fabric-react/lib/Button';
-import {  Col, Thumbnail } from 'react-bootstrap';
+import { DefaultButton} from 'office-ui-fabric-react/lib/Button';
+import { Dropdown} from 'office-ui-fabric-react/lib/Dropdown';
+import { SpinButton } from 'office-ui-fabric-react/lib/SpinButton';
 import './List.Ghosting.Example.scss';
-import logo from './images/watches/tag heuer-carrera2.jpg';
+import logo from './images/watches/logo.png';
+import { Card, CardBody, CardText,CardImg, Col } from 'reactstrap';
 
 export class UpdateForm extends React.Component{
   constructor(props){
@@ -13,10 +15,12 @@ export class UpdateForm extends React.Component{
                   Tipo:"",
                   Año:"",
                   Diametro:"",
+                  Imagen:"",
                   id: 0,};
     this.saveObject = this.saveObject.bind(this);
     this.saveChange = this.saveChange.bind(this);
     this.cleanFields = this.cleanFields.bind(this);
+    this.getKey = this.getKey.bind(this);
   }
   
   saveObject(e){    
@@ -30,6 +34,7 @@ export class UpdateForm extends React.Component{
                   Modelo:"",
                   Tipo:"",
                   Año:"",
+                  Imagen:"",
                   Diametro:"99 mm"});
   }
   saveChange(event){
@@ -41,12 +46,34 @@ export class UpdateForm extends React.Component{
       [name]: value
     });
   }
+
+  getKey(event){
+      if(!event.target.textContent.includes("Tipo"))
+      {
+        this.setState({
+          ['Tipo']: event.target.textContent
+        });
+      }
+  }
+  hasSuffix(value, suffix){
+    const subString = value.substr(value.length - suffix.length);
+    return subString === suffix;
+  }
+  
+  removeSuffix(value, suffix){
+    if (!this.hasSuffix(value, suffix)) {
+      return value;
+    }
+  
+    return value.substr(0, value.length - suffix.length);
+  }
+
   render(){
     const style = {
         display: 'flex',
         justifyContent: 'center'
     } 
-    
+    const suffix = ' mm';
     const textFieldStyle = () => {
       return {
         root: {
@@ -59,20 +86,61 @@ export class UpdateForm extends React.Component{
         <div className="docs-TextFieldExample" style={style}>
         <Col sm={6}>         
         <br/>       
-        <Thumbnail src={logo} alt="242x200">
-        <TextField id="Marca" label="Marca" value={this.state.Marca} underlined onChange={this.saveChange} required={true} styles={textFieldStyle}/>        
-        <TextField id="Modelo" label="Modelo" value={this.state.Modelo} underlined onChange={this.saveChange} required={true} styles={textFieldStyle}/>
-        <TextField id="Año" label="Año" value={this.state.Año} underlined onChange={this.saveChange} required={true} styles={textFieldStyle}/>        
-        <TextField id="Tipo" label="Tipo" value={this.state.Tipo} underlined onChange={this.saveChange} required={true} styles={textFieldStyle} />
-        <MaskedTextField id="Diametro" value={this.state.Diametro} defaultValue="" label="Diametro" onChange={this.saveChange} underlined mask="99 mm"styles={textFieldStyle}/> 
-        <br/>
-        <DefaultButton
-            primary={true}
-            text="Agregar"
-            allowDisabledFocus={true}
-            onClick={this.saveObject}
-        />
-        </Thumbnail>
+          <Card>
+            <CardBody>
+              {!this.state.Imagen && <CardImg top width={75} src={logo} />}
+              {this.state.Imagen && <CardImg top width={350} src={this.state.Imagen} alt="Card image cap" />}
+                <CardText>
+                  <TextField id="Marca" label="Marca" value={this.state.Marca} underlined onChange={this.saveChange} required={true} styles={textFieldStyle}/>        
+                  <TextField id="Modelo" label="Modelo" value={this.state.Modelo} underlined onChange={this.saveChange} required={true} styles={textFieldStyle}/>
+                  <TextField id="Año" label="Año" value={this.state.Año} underlined onChange={this.saveChange} required={true} styles={textFieldStyle}/>        
+                  <Dropdown
+                      id="Tipo" 
+                      onChange={this.getKey} 
+                      required={true} 
+                      styles={textFieldStyle}
+                      selectedKey={this.state.Tipo ? this.state.Tipo.key : undefined}
+                      placeHolder="Tipo"
+                      options={[
+                        { key: 'F', text: 'Formal' },
+                        { key: 'C', text: 'Casual' },
+                        { key: 'S', text: 'Sport' },
+                      ]}
+                    />        
+                  <TextField id="Imagen" label="Imagen" value={this.state.Imagen} underlined onChange={this.saveChange} required={false} styles={textFieldStyle} />
+                  <MaskedTextField id="Diametro" value={this.state.Diametro} defaultValue="" label="Diametro" onChange={this.saveChange} underlined mask="99 mm"styles={textFieldStyle}/> 
+                  <SpinButton
+                    styles={textFieldStyle}
+                    id="Diametro"
+                    value={'40' + suffix}
+                    onValidate={(value) => {
+                      value = this.removeSuffix(value, suffix);
+                      if (value.trim().length === 0 || isNaN(+value)) {
+                        return '0' + suffix;
+                      }
+
+                      return String(value) + suffix;
+                    }}
+                    onIncrement={(value) => {
+                      value = this.removeSuffix(value, suffix);
+                      return String(+value + 1) + suffix;
+                    }}
+                    onDecrement={(value) => {
+                      value = this.removeSuffix(value, suffix);
+                      return String(+value - 1) + suffix;
+                    }}
+                    
+                  />
+                  <br/>
+                  <DefaultButton
+                      primary={true}
+                      text="Agregar"
+                      allowDisabledFocus={true}
+                      onClick={this.saveObject}
+                  />
+              </CardText>
+            </CardBody>
+          </Card>
         </Col>
       </div>
     );

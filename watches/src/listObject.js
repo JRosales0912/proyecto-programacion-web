@@ -1,10 +1,12 @@
 import * as React from 'react';
-import logo from './images/watches/tag heuer-carrera2.jpg';
+import logo from './images/watches/logo.png';
 import './List.Ghosting.Example.scss';
-import { Col, Thumbnail } from 'react-bootstrap';
+import { Col} from 'react-bootstrap';
 import { DefaultButton } from 'office-ui-fabric-react/lib/Button';
 import { TextField, MaskedTextField } from 'office-ui-fabric-react/lib/TextField';
+import { Dropdown} from 'office-ui-fabric-react/lib/Dropdown';
 import { Label } from 'office-ui-fabric-react';
+import { Card,CardImg, CardTitle, CardText, CardBody } from 'reactstrap';
 
 export class ListObject extends React.Component{
   constructor(props){
@@ -12,7 +14,7 @@ export class ListObject extends React.Component{
     this.handleDeleteClick = this.handleDeleteClick.bind(this);
     this.handleModifyClick = this.handleModifyClick.bind(this);
     this.saveChange = this.saveChange.bind(this);
-    console.log("constructor");
+    this.getKey = this.getKey.bind(this);
     this.state = { visible: true,
                     modify: false,
                     Marca:"",
@@ -20,6 +22,7 @@ export class ListObject extends React.Component{
                     Tipo:"",
                     Año:"",
                     Diametro:"",
+                    Imagen:"",
                     id: 0,};
   } 
   saveObject(e){
@@ -28,6 +31,7 @@ export class ListObject extends React.Component{
                     Tipo:this.state.Tipo,
                     Año:this.state.Año,
                     Diametro:this.state.Diametro,
+                    Imagen:this.state.Imagen,
                     id: this.state.id,};    
     localStorage.setItem(this.state.id.toString(),JSON.stringify(watch));
   }
@@ -48,6 +52,15 @@ export class ListObject extends React.Component{
 
     }
 
+  }
+
+  getKey(event){
+    if(!event.target.textContent.includes("Tipo"))
+    {
+      this.setState({
+        ['Tipo']: event.target.textContent
+      });
+    }
   }
 
   handleDeleteClick(e) {
@@ -80,8 +93,8 @@ export class ListObject extends React.Component{
                   Tipo:this.item.Tipo,
                   Año:this.item.Año,
                   Diametro:this.item.Diametro,
+                  Imagen:this.item.Imagen,
                   id: this.item.id});
-    console.log(this.state);
   }
   render() {
     const style = {
@@ -96,25 +109,48 @@ export class ListObject extends React.Component{
       }
     };
     return (
-        <Col xs={6} md={4} id={this.key} style={style}>
-            <Thumbnail src={logo} alt="242x200">
-            {this.state.modify && <TextField  id="Marca" label="Marca" underlined value={this.state.Marca} onChange={this.saveChange} styles={textFieldStyle}/>}
+      <Col xs={6} md={4}id={this.key} style={style} >
+        <Card> 
+          {console.log(this.state)}           
+            {!this.state.Imagen && <CardImg top width={350} top height={450} src={logo}/>}
+            {this.state.Imagen && <CardImg top width={350} top height={450} src={this.state.Imagen} alt="Card image cap" />}
+            <CardBody>
+            <CardTitle>{this.state.modify && <TextField  id="Marca" label="Marca:" underlined value={this.state.Marca} onChange={this.saveChange} styles={textFieldStyle}/>}
             {!this.state.modify && <Label>Marca {this.state.Marca}</Label>}
-            {this.state.modify && <TextField  id="Modelo" label="Modelo" underlined value={this.state.Modelo} onChange={this.saveChange} styles={textFieldStyle}/> }        
+            </CardTitle>
+            <CardText>
+            {this.state.modify && <TextField  id="Modelo" label="Modelo:" underlined value={this.state.Modelo} onChange={this.saveChange} styles={textFieldStyle}/> }        
             {!this.state.modify && <Label>Modelo {this.state.Modelo}</Label>}
-            {this.state.modify && <TextField  id="Año" label="Año" underlined value={this.state.Año} onChange={this.saveChange} styles={textFieldStyle}/>}
+            {this.state.modify && <TextField  id="Año" label="Año:" underlined value={this.state.Año} onChange={this.saveChange} styles={textFieldStyle}/>}
             {!this.state.modify && <Label>Año {this.state.Año}</Label>}
-            {this.state.modify && <TextField id="Tipo" label="Tipo" underlined value={this.state.Tipo} onChange={this.saveChange} styles={textFieldStyle}/>}
+            {
+              this.state.modify && 
+              <Dropdown
+                      id="Tipo" 
+                      onChange={this.getKey} 
+                      required={true} 
+                      styles={textFieldStyle}
+                      selectedKey={this.state.Tipo ? this.state.Tipo.key : undefined}
+                      placeHolder="Tipo"
+                      options={[
+                        { key: 'F', text: 'Formal' },
+                        { key: 'C', text: 'Casual' },
+                        { key: 'S', text: 'Sport' },
+                      ]}
+                    />
+            }
             {!this.state.modify && <Label>Tipo {this.state.Tipo}</Label>}
-            {this.state.modify && <MaskedTextField id="Diametro" label="Diametro" underlined value={this.state.Diametro} onChange={this.saveChange} styles={textFieldStyle} mask="99 mm"/>}
+            {this.state.modify && <MaskedTextField id="Diametro" label="Diametro:" underlined value={this.state.Diametro} onChange={this.saveChange} styles={textFieldStyle} mask="99 mm"/>}
             {!this.state.modify && <Label>Diametro {this.state.Diametro}</Label>}
-            <br/>
+            {this.state.modify && <TextField id="Imagen" label="Imagen:" underlined value={this.state.Imagen} onChange={this.saveChange} styles={textFieldStyle}/>}
+            </CardText>
             <p>
                 <DefaultButton primary={true} onClick={this.handleModifyClick} checked={this.state.modify}>Modificar</DefaultButton>
                 &nbsp;
                 <DefaultButton onClick={this.handleDeleteClick}>Eliminar</DefaultButton>
             </p>
-            </Thumbnail>
+            </CardBody>
+        </Card>
         </Col>
     );
   }
