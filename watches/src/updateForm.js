@@ -15,18 +15,36 @@ export class UpdateForm extends React.Component{
                   Tipo:"",
                   Año:"",
                   Diametro:"",
-                  Imagen:"",
-                  id: 0,};
+                  Imagen:""};
     this.saveObject = this.saveObject.bind(this);
     this.saveChange = this.saveChange.bind(this);
     this.cleanFields = this.cleanFields.bind(this);
+    this.callAPI = this.callPOST.bind(this);
     this.getKey = this.getKey.bind(this);
   }
   
+  callPOST()
+  {
+    fetch('/api/v1/watches/', {
+      method: 'POST', // or 'PUT'
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(this.state), // data can be `string` or {object}!
+      
+    }).then(res => res)
+    .catch(error => console.error('Error:', error))
+    .then(response => console.log('Success:', response));
+  }
+
+
+
   saveObject(e){    
-    this.setState({id: this.state.id + 1});
-    localStorage.setItem(this.state.id.toString(),JSON.stringify(this.state));
-    this.cleanFields();
+    //this.setState({id: this.state.id + 1});
+    //localStorage.setItem(this.state.id.toString(),JSON.stringify(this.state));
+    this.callPOST();
+    //this.cleanFields();
   }
 
   cleanFields(){
@@ -35,7 +53,7 @@ export class UpdateForm extends React.Component{
                   Tipo:"",
                   Año:"",
                   Imagen:"",
-                  Diametro:"99 mm"});
+                  Diametro:""});
   }
   saveChange(event){
     const target = event.target;
@@ -51,21 +69,9 @@ export class UpdateForm extends React.Component{
       if(!event.target.textContent.includes("Tipo"))
       {
         this.setState({
-          ['Tipo']: event.target.textContent
+          'Tipo' : event.target.textContent
         });
       }
-  }
-  hasSuffix(value, suffix){
-    const subString = value.substr(value.length - suffix.length);
-    return subString === suffix;
-  }
-  
-  removeSuffix(value, suffix){
-    if (!this.hasSuffix(value, suffix)) {
-      return value;
-    }
-  
-    return value.substr(0, value.length - suffix.length);
   }
 
   render(){
@@ -108,29 +114,8 @@ export class UpdateForm extends React.Component{
                       ]}
                     />        
                   <TextField id="Imagen" label="Imagen" value={this.state.Imagen} underlined onChange={this.saveChange} required={false} styles={textFieldStyle} />
-                  <MaskedTextField id="Diametro" value={this.state.Diametro} defaultValue="" label="Diametro" onChange={this.saveChange} underlined mask="99 mm"styles={textFieldStyle}/> 
-                  <SpinButton
-                    styles={textFieldStyle}
-                    id="Diametro"
-                    value={'40' + suffix}
-                    onValidate={(value) => {
-                      value = this.removeSuffix(value, suffix);
-                      if (value.trim().length === 0 || isNaN(+value)) {
-                        return '0' + suffix;
-                      }
-
-                      return String(value) + suffix;
-                    }}
-                    onIncrement={(value) => {
-                      value = this.removeSuffix(value, suffix);
-                      return String(+value + 1) + suffix;
-                    }}
-                    onDecrement={(value) => {
-                      value = this.removeSuffix(value, suffix);
-                      return String(+value - 1) + suffix;
-                    }}
-                    
-                  />
+                  <TextField id="Diametro" label="Diametro:" underlined value={this.state.Diametro} onChange={this.saveChange} styles={textFieldStyle}/>
+                  
                   <br/>
                   <DefaultButton
                       primary={true}

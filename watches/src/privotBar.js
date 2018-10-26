@@ -10,40 +10,6 @@ import {WatchHistory} from "./historia.js"
 export class PivotBasic extends React.Component{
   render(){
     initializeIcons();
-    localStorage.setItem("99",JSON.stringify({Marca:"Rolex",
-                                              Modelo:"Aquamaster",
-                                              Tipo:"Casual",
-                                              Año:"2019",
-                                              Diametro:"42 mm"}));                                  
-    localStorage.setItem("89",JSON.stringify({Marca:"Omega",
-                                              Modelo:"Aquaracer",
-                                              Tipo:"Formal",
-                                              Año:"2015",
-                                              Diametro:"46 mm"}));
-    
-    localStorage.setItem("909",JSON.stringify({Marca:"Bulova",
-                                              Modelo:"CURV",
-                                              Tipo:"Casual",
-                                              Año:"2017",
-                                              Diametro:"38 mm"}));
-                                              
-    localStorage.setItem("1010",JSON.stringify({Marca:"Rolex",
-    Modelo:"Aquamaster",
-    Tipo:"Casual",
-    Año:"2019",
-    Diametro:"42 mm"}));                                  
-localStorage.setItem("88",JSON.stringify({Marca:"Omega",
-    Modelo:"Aquaracer",
-    Tipo:"Formal",
-    Año:"2015",
-    Diametro:"46 mm"}));
-
-localStorage.setItem("77",JSON.stringify({Marca:"Bulova",
-    Modelo:"CURV",
-    Tipo:"Casual",
-    Año:"2017",
-    Diametro:"38 mm"}));
-
     return (
       <div align="center">
         <Pivot linkSize={PivotLinkSize.large}>

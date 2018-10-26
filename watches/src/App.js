@@ -4,6 +4,7 @@ import './App.css';
 import {PivotBasic} from './privotBar'
 
 class App extends Component {
+  
   render() {
 
     const styles = {
