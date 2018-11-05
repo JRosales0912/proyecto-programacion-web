@@ -3,7 +3,7 @@ import logo from './images/watches/logo.png';
 import './List.Ghosting.Example.scss';
 import { Col} from 'react-bootstrap';
 import { DefaultButton } from 'office-ui-fabric-react/lib/Button';
-import { TextField, MaskedTextField } from 'office-ui-fabric-react/lib/TextField';
+import { TextField} from 'office-ui-fabric-react/lib/TextField';
 import { Dropdown} from 'office-ui-fabric-react/lib/Dropdown';
 import { Label } from 'office-ui-fabric-react';
 import { Card,CardImg, CardTitle, CardText, CardBody } from 'reactstrap';

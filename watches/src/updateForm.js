@@ -2,7 +2,6 @@ import * as React from 'react';
 import { TextField, MaskedTextField } from 'office-ui-fabric-react/lib/TextField';
 import { DefaultButton} from 'office-ui-fabric-react/lib/Button';
 import { Dropdown} from 'office-ui-fabric-react/lib/Dropdown';
-import { SpinButton } from 'office-ui-fabric-react/lib/SpinButton';
 import './List.Ghosting.Example.scss';
 import logo from './images/watches/logo.png';
 import { Card, CardBody, CardText,CardImg, Col } from 'reactstrap';
@@ -41,10 +40,8 @@ export class UpdateForm extends React.Component{
 
 
   saveObject(e){    
-    //this.setState({id: this.state.id + 1});
-    //localStorage.setItem(this.state.id.toString(),JSON.stringify(this.state));
     this.callPOST();
-    //this.cleanFields();
+    this.cleanFields();
   }
 
   cleanFields(){

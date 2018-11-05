@@ -8,7 +8,9 @@
     "react-bootstrap": "^0.32.4",
     "react-dom": "^16.5.1",
     "react-scripts": "1.1.5",
-    "reactstrap": "^6.4.0"
+    "reactstrap": "^6.4.0",
+    "@uifabric/icons": "6.1.0",
+    "office-ui-fabric-react": "6.70.0"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -16,5 +18,5 @@
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },
-  "proxy": "http://localhost:3001/"
+  "proxy": "http://react-host:3001/"
 }
