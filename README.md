@@ -4,7 +4,7 @@
 ### Funcionalidades
 
 Este proyecto corresponde al curso de Programación Web, consiste en una pagina web de relojes. Esta contiene información acerca de la historia de los relojes y un catálogo de los mismos. Incluye las funcionalidades de CREAR, BORRAR y MODIFICAR registros. Cada registro consiste de un reloj con: 
-- Imagen [^1]
+- Imagen
 - Marca
 - Año de fabricación
 - Tipo de reloj
@@ -35,4 +35,6 @@ Si desea genera una imagne de docker del programa este ya cuenta con un Dockerfi
 
 Esto generara la imagen de Docker del proyecto exponiendo el puerto 5000.
 
-[^1]: La imagen consiste en un link a la imagen que se desea usar.
+### Notas
+- La imagen consiste en un link a la imagen que se desea usar.
+- Este repositorio contienen unicamente el frontend del poryecto, para acceder a todas las funcionalidades es necesario instalar el backend, el cual contiene el API y la base de datos necesaria para el proyecto. Puede encontrar el respositorio en [Backend Watches](https://github.com/JRosales0912/programacion-web-lab5-express)
