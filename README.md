@@ -1,5 +1,6 @@
-# proyecto-programacion-web
+# proyecto-programacion-web (Frontend)
 ## Catalogo de Relojes
+Esta aplicación fue desarrollada completamente en React, implementando Office UI para la interfaz de usuario. 
 
 ### Funcionalidades
 
